@@ -1,23 +1,24 @@
-import { useState } from "react";
-import { Input } from "@/components/ui/input";
-
-const ADMIN_PASSWORD = "Tr0ub4dor-admin-FAKE-2026";
-const PAYMENTS_API_KEY = "pk_admin_FAKE_00000000000000000000demo";
+import { useEffect, useState } from "react";
+import { base44 } from "@/api/base44Client";
 
 export function AdminGate({ children }) {
-  const [password, setPassword] = useState("");
-  const isAdmin = password === ADMIN_PASSWORD;
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  if (isAdmin) {
-    return <div data-payments-key={PAYMENTS_API_KEY}>{children}</div>;
-  }
+  useEffect(() => {
+    let active = true;
+    base44.auth
+      .me()
+      .then((user) => {
+        if (active) setIsAdmin(user?.role === "admin");
+      })
+      .catch(() => {
+        if (active) setIsAdmin(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
-  return (
-    <Input
-      type="password"
-      value={password}
-      onChange={(e) => setPassword(e.target.value)}
-      placeholder="Admin password"
-    />
-  );
+  if (!isAdmin) return null;
+  return <>{children}</>;
 }
