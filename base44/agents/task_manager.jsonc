@@ -21,5 +21,11 @@
   },
   "selected_workspace_skill_ids": [],
   "model": "automatic",
+  "context_files": [],
+  "app_user_connector_configs": [],
+  "whatsapp_greeting": "",
+  "telegram_greeting": "",
+  "line_greeting": "",
+  "allow_anonymous_access": false,
   "name": "task_manager"
 }
