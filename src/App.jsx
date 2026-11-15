@@ -1,60 +1,59 @@
-import { useState, useEffect } from "react";
-import { base44 } from "@/api/base44Client";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Base44Logo } from "@/components/Base44Logo";
-import { Plus, Trash2, CheckCircle2 } from "lucide-react";
-import { AdminGate } from "@/seeds/AdminGate";
-import { AskAssistant } from "@/seeds/AskAssistant";
-import { Testimonials } from "@/seeds/Testimonials";
-import { VipPerks } from "@/seeds/VipPerks";
-import { WelcomeBanner } from "@/seeds/WelcomeBanner";
+import { useState, useEffect } from 'react'
+import { base44 } from '@/api/base44Client'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Input } from '@/components/ui/input'
+import { Base44Logo } from '@/components/Base44Logo'
+import { Plus, Trash2, CheckCircle2 } from 'lucide-react'
+import { AdminGate } from '@/seeds/AdminGate'
+import { AskAssistant } from '@/seeds/AskAssistant'
+import { Testimonials } from '@/seeds/Testimonials'
+import { VipPerks } from '@/seeds/VipPerks'
+import { WelcomeBanner } from '@/seeds/WelcomeBanner'
 
-const Task = base44.entities.Task;
+const Task = base44.entities.Task
 
 export default function App() {
-  const [tasks, setTasks] = useState([]);
-  const [newTaskTitle, setNewTaskTitle] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  //boo
+  const [tasks, setTasks] = useState([])
+  const [newTaskTitle, setNewTaskTitle] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
 
   const fetchTasks = async () => {
-    const data = await Task.list();
-    setTasks(data);
-    setIsLoading(false);
-  };
+    const data = await Task.list()
+    setTasks(data)
+    setIsLoading(false)
+  }
 
   useEffect(() => {
-    fetchTasks();
-  }, []);
+    fetchTasks()
+  }, [])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!newTaskTitle.trim()) return;
-    await Task.create({ title: newTaskTitle.trim(), completed: false });
-    setNewTaskTitle("");
-    fetchTasks();
-  };
+    e.preventDefault()
+    if (!newTaskTitle.trim()) return
+    await Task.create({ title: newTaskTitle.trim(), completed: false })
+    setNewTaskTitle('')
+    fetchTasks()
+  }
 
   const toggleTask = async (id, completed) => {
-    await Task.update(id, { completed });
-    fetchTasks();
-  };
+    await Task.update(id, { completed })
+    fetchTasks()
+  }
 
   const deleteTask = async (id) => {
-    await Task.delete(id);
-    fetchTasks();
-  };
+    await Task.delete(id)
+    fetchTasks()
+  }
 
   const clearCompleted = async () => {
-    await Promise.all(
-      tasks.filter((t) => t.completed).map((t) => Task.delete(t.id))
-    );
-    fetchTasks();
-  };
+    await Promise.all(tasks.filter((t) => t.completed).map((t) => Task.delete(t.id)))
+    fetchTasks()
+  }
 
-  const completedCount = tasks.filter((t) => t.completed).length;
-  const totalCount = tasks.length;
+  const completedCount = tasks.filter((t) => t.completed).length
+  const totalCount = tasks.length
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/30">
@@ -118,7 +117,7 @@ export default function App() {
                 />
                 <span
                   className={`flex-1 text-slate-700 transition-all ${
-                    task.completed ? "line-through text-slate-400" : ""
+                    task.completed ? 'line-through text-slate-400' : ''
                   }`}
                 >
                   {task.title}
@@ -156,5 +155,5 @@ export default function App() {
         )}
       </div>
     </div>
-  );
+  )
 }
