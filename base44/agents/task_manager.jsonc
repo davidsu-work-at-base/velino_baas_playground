@@ -12,9 +12,7 @@
       ]
     }
   ],
-  "selected_skill_names": [
-    "weekly-report"
-  ],
+  "selected_skill_names": [],
   "memory_config": {
     "enabled": true,
     "scope": "both",
