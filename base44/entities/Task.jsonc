@@ -1,12 +1,7 @@
 {
   "name": "Task",
   "type": "object",
-  "properties": {
-    "title": {
-      "type": "string",
-      "description": "Task title"
-    }
-  },
+  "properties": {},
   "required": [
     "title"
   ]
