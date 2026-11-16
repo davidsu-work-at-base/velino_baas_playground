@@ -60,7 +60,6 @@ export default function App() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/30">
       <div className="max-w-lg mx-auto px-6 py-16">
         {/* Header */}
-        test me!!!!
         <div className="text-center mb-12">
           <h1 className="text-3xl font-semibold text-slate-900 tracking-tight">
             <span className="inline-flex items-center gap-2 align-middle">
