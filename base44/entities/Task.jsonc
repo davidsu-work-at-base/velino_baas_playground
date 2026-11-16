@@ -5,14 +5,9 @@
     "title": {
       "type": "string",
       "description": "Task title"
-    },
-    "completed": {
-      "type": "string",
-      "description": "Completion status of the task"
     }
   },
   "required": [
-    "title",
-    "completed"
+    "title"
   ]
 }
