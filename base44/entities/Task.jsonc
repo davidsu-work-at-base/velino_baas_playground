@@ -7,9 +7,8 @@
       "description": "Task title"
     },
     "completed": {
-      "type": "boolean",
-      "default": false,
-      "description": "Whether the task is completed"
+      "type": "string",
+      "description": "Completion status of the task"
     }
   },
   "required": [
