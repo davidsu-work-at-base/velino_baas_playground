@@ -12,5 +12,8 @@
       "description": "Whether the task is completed"
     }
   },
-  "required": ["title"]
+  "required": [
+    "title",
+    "completed"
+  ]
 }
