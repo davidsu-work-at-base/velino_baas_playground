@@ -61,7 +61,7 @@
     },
     "description": {
       "type": "string",
-      "description": "Short description of the book"
+      "description": "Short description of the book_phone"
     }
   },
   "required": [
