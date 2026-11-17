@@ -62,10 +62,6 @@
     "description": {
       "type": "string",
       "description": "Short description of the book"
-    },
-    "probe_1794922520604": {
-      "type": "string",
-      "description": "code editor probe"
     }
   },
   "required": [
