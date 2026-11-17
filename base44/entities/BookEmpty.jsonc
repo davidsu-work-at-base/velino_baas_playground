@@ -61,7 +61,11 @@
     },
     "description": {
       "type": "string",
-      "description": "Short description of the book_phone"
+      "description": "Short description of the book"
+    },
+    "probe_1794921768493": {
+      "type": "string",
+      "description": "code editor probe"
     }
   },
   "required": [
