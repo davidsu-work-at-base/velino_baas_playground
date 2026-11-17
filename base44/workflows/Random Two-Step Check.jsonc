@@ -1,4 +1,23 @@
 {
+  "name": "Random Two-Step Checkaa",
+  "description": "A simple scheduled workflow that runs two steps every day at 9am",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "scheduled",
+      "events": [],
+      "schedule_mode": "recurring",
+      "cron_expression": "0 9 * * *",
+      "one_time_date": null,
+      "timezone": "Asia/Jerusalem",
+      "interval_value": null,
+      "interval_unit": null,
+      "interval_anchor": null,
+      "ends_type": "never",
+      "ends_on_date": null,
+      "ends_after_count": null
+    }
+  },
   "definition": {
     "document": {
       "dsl": "1.0.0",
@@ -36,24 +55,5 @@
         }
       }
     ]
-  },
-  "description": "A simple scheduled workflow that runs two steps every day at 9am",
-  "name": "Random Two-Step Check",
-  "trigger": {
-    "condition": null,
-    "config": {
-      "trigger_type": "scheduled",
-      "events": [],
-      "schedule_mode": "recurring",
-      "cron_expression": "0 9 * * *",
-      "one_time_date": null,
-      "timezone": "Asia/Jerusalem",
-      "interval_value": null,
-      "interval_unit": null,
-      "interval_anchor": null,
-      "ends_type": "never",
-      "ends_on_date": null,
-      "ends_after_count": null
-    }
   }
 }
