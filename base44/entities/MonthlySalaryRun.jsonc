@@ -1,0 +1,76 @@
+{
+  "name": "MonthlySalaryRun",
+  "type": "object",
+  "properties": {
+    "month": {
+      "type": "string",
+      "description": "Month key in YYYY-MM format"
+    },
+    "month_label": {
+      "type": "string",
+      "description": "Readable month, e.g. November 2026"
+    },
+    "completed_task_count": {
+      "type": "number",
+      "description": "Number of tasks completed during the month"
+    },
+    "employee_count": {
+      "type": "number",
+      "description": "Number of employees included in the run"
+    },
+    "total_monthly_salary": {
+      "type": "number",
+      "description": "Total monthly salary in USD for the month"
+    },
+    "status": {
+      "type": "string",
+      "description": "State of the salary record",
+      "enum": [
+        "draft",
+        "finalized"
+      ],
+      "enumColors": [
+        "gray",
+        "green"
+      ],
+      "default": "draft"
+    },
+    "finalized_at": {
+      "type": "string",
+      "description": "When the salary record was closed",
+      "format": "date-time"
+    },
+    "sample_tasks": {
+      "type": "array",
+      "description": "A few of the completed tasks counted in the run",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "month"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

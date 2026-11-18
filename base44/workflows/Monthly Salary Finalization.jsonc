@@ -1,0 +1,86 @@
+{
+  "name": "Monthly Salary Finalization",
+  "description": "Runs on the last day of every month, totals completed tasks and monthly payroll from EmployeeSalary, finalizes the salary record and notifies HR by email",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "scheduled",
+      "events": [],
+      "schedule_mode": "recurring",
+      "cron_expression": "0 18 28-31 * *",
+      "one_time_date": null,
+      "timezone": "Asia/Jerusalem",
+      "interval_value": null,
+      "interval_unit": null,
+      "interval_anchor": null,
+      "ends_type": "never",
+      "ends_on_date": null,
+      "ends_after_count": null
+    }
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "monthly_salary_finalization",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "finalize_salary_run": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "finalizeMonthlySalary",
+            "args": {}
+          },
+          "then": "check_finalized",
+          "x-base44": {
+            "title": "Finalize the salary record",
+            "description": "Totals the month's completed tasks and payroll"
+          }
+        }
+      },
+      {
+        "check_finalized": {
+          "switch": [
+            {
+              "when": "${ .finalize_salary_run.finalized == true and .finalize_salary_run.hr_recipient != null }",
+              "then": "notify_hr",
+              "x-base44": {
+                "title": "Salary record finalized"
+              }
+            },
+            {
+              "when": "${ true }",
+              "then": "end"
+            }
+          ]
+        }
+      },
+      {
+        "notify_hr": {
+          "call": "send_email",
+          "with": {
+            "template_name": "MonthlySalaryRun",
+            "to": "${ .finalize_salary_run.hr_recipient }",
+            "description": "Tells HR the month's salary record is finalized, with the total monthly salary and completed task count",
+            "category": "transactional",
+            "variables": {
+              "month_label": "${ .finalize_salary_run.month_label }",
+              "completed_tasks": "${ .finalize_salary_run.completed_tasks }",
+              "employee_count": "${ .finalize_salary_run.employee_count }",
+              "total_monthly_salary": "${ .finalize_salary_run.total_monthly_salary }",
+              "hr_name": "${ .finalize_salary_run.hr_name }",
+              "app_url": "https://baas-protected-copy-a0cca020-s-p41188.preview.velino.org"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Notify HR",
+            "description": "Emails the finalized salary summary"
+          }
+        }
+      }
+    ]
+  }
+}
