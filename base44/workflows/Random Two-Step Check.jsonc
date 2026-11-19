@@ -27,6 +27,16 @@
     },
     "do": [
       {
+        "initial_wait": {
+          "wait": "PT1S",
+          "then": "random_step",
+          "x-base44": {
+            "title": "Wait 1 second",
+            "description": "Short pause before the random step"
+          }
+        }
+      },
+      {
         "random_step": {
           "call": "calculate_field",
           "with": {
