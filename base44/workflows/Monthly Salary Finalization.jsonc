@@ -1,5 +1,5 @@
 {
-  "name": "Monthly Salary Finalization",
+  "name": "Monthly Salary Finalization1",
   "description": "Runs on the last day of every month, totals completed tasks and monthly payroll from EmployeeSalary, finalizes the salary record and notifies HR by email",
   "trigger": {
     "condition": null,
