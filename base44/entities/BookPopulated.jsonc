@@ -56,7 +56,7 @@
     },
     "in_stock": {
       "type": "boolean",
-      "default": true,
+      "default": false,
       "description": "Whether the book is available"
     },
     "description": {
