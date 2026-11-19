@@ -27,6 +27,20 @@
     },
     "do": [
       {
+        "random_step": {
+          "call": "calculate_field",
+          "with": {
+            "field": "random_pick",
+            "value": "${ [\"alpha\", \"beta\", \"gamma\"][(now | floor) % 3] }"
+          },
+          "then": "set_run_status",
+          "x-base44": {
+            "title": "Random step",
+            "description": "Picks a random value"
+          }
+        }
+      },
+      {
         "set_run_status": {
           "call": "calculate_field",
           "with": {
