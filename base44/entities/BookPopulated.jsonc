@@ -69,9 +69,13 @@
     "author"
   ],
   "rls": {
-    "read": {},
-    "create": {},
-    "update": {},
-    "delete": {}
+    "create": null,
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": null
   }
 }
