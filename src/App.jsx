@@ -11,6 +11,7 @@ import { AskAssistant } from "@/seeds/AskAssistant";
 import { Testimonials } from "@/seeds/Testimonials";
 import { VipPerks } from "@/seeds/VipPerks";
 import { WelcomeBanner } from "@/seeds/WelcomeBanner";
+import BookingsSection from "@/components/bookings/BookingsSection";
 
 const Task = base44.entities.Task;
 
@@ -136,6 +137,8 @@ function AppContent() {
             ))
           )}
         </div>
+
+        <BookingsSection />
 
         <WelcomeBanner />
         <Testimonials />
