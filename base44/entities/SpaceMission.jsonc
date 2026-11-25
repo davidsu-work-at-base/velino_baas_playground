@@ -1,0 +1,92 @@
+{
+  "name": "SpaceMission",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Mission name"
+    },
+    "agency": {
+      "type": "string",
+      "description": "Agency or company running the mission"
+    },
+    "destination": {
+      "type": "string",
+      "description": "Target destination, e.g. Mars, Low Earth Orbit"
+    },
+    "launch_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Planned or actual launch date"
+    },
+    "crew_size": {
+      "type": "number",
+      "description": "Number of crew members"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "planned",
+        "in_progress",
+        "completed",
+        "aborted"
+      ],
+      "enumColors": [
+        "gray",
+        "blue",
+        "green",
+        "red"
+      ],
+      "default": "planned",
+      "description": "Current mission status"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-form notes"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
